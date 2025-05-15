@@ -158,3 +158,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Change background for inline code */
+.markdown-body code {
+  background-color: #f3f1ff;
+  color: #6c3fc5;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+/* Change background for code blocks */
+.markdown-body pre code {
+  background-color: #232136 !important;
+  color: #fff;
+  padding: 1em;
+  border-radius: 8px;
+  display: block;
+}

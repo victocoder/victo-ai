@@ -11,12 +11,12 @@ export async function POST(req: Request) {
     // For demonstration purposes, we'll just return the email and password
     const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
-        contents: "Teach me HTML and CSS",
+        contents: prompt,
         config: {
             systemInstruction: "You are a coding teacher AI named CodeBuddy. Your job is to teach beginners the fundamentals of HTML and CSS. Provide clear explanations, examples, and answer questions related to web development. Encourage hands-on practice and guide users through creating simple web pages.",
         },
     });
-
+    console.log("response", response.text);
     if (!response.text) {
         throw new Error('Failed to fetch response')
     }

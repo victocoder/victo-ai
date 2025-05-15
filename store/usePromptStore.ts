@@ -17,6 +17,7 @@ const usePromtStore = create<PromptState>((set) => ({
     set({ loading: true, error: null })
     try {
       const res = await axios.post('/api/gemini', formData)
+      console.log(res.data.response)
       set({ aiResponse: res.data.response, loading: false })
       return "success"
     } catch (err: any) {
