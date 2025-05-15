@@ -2,7 +2,6 @@ import { doctorSystemInstruciton } from "@/lib/constants";
 import { GoogleGenAI } from "@google/genai";
 
 export async function POST(req: Request) {
-    const { prompt, settings } = await req.json();
 
     if (!process.env.GEMINI_API_KEY) {
         throw new Error('GEMINI_API_KEY is not defined')
@@ -10,14 +9,25 @@ export async function POST(req: Request) {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     // Here you would typically hash the password and save the user to your database
     // For demonstration purposes, we'll just return the email and password
-    const response = await ai.models.generateContent({
+    const { message, history } = await req.json();
+
+    const chat = ai.chats.create({
         model: "gemini-2.0-flash",
-        contents: prompt,
-        config: {
-            systemInstruction: doctorSystemInstruciton,
-        },
-        
+        history, // pass the full history here
     });
+
+    const response = await chat.sendMessage({ message });
+    const newMessage = {
+        role: "user",
+        parts: [{ text: message }],
+    };
+
+    const newModelReply = {
+        role: "model",
+        parts: [{ text: response.text }],
+    };
+
+   
     console.log("response", response.text);
     if (!response.text) {
         throw new Error('Failed to fetch response')
@@ -25,8 +35,8 @@ export async function POST(req: Request) {
 
     return new Response(
         JSON.stringify({
-            message: "gimini responded ",
-            response: response.text
+            text: response.text,
+            updatedHistory: [...history],
         }),
         {
             status: 201,

@@ -18,7 +18,6 @@ const AiPrompt = () => {
     const [response, setResponse] = useState<string>('')
     const [formData, setFormData] = useState<PromptFormData>({
         prompt: '',
-
     })
 
     const handleChange = (e: { target: { name: any; value: any } }) => {
@@ -36,36 +35,38 @@ const AiPrompt = () => {
     }
     return (
         <div>
-              <div className='  pl-[320px] pt-[70px] mb-[200px] '>
+            <div className='pl-[320px] pt-[70px] mb-[200px] '>
                 {
-                    loading && ( <h1>Thinking....</h1>)
+                    loading && (<h1>Thinking....</h1>)
                 }
-                     {error && <p className='text-red-500'>{error}</p>}
+                {error && <p className='text-red-500'>{error}</p>}
                 <h1>{prompt}</h1>
-               {
-                aiResponse ? (
-                     <div className='text-left'>
-                        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                            {aiResponse}
-                        </ReactMarkdown>
-                    </div>
-                ):(<div>
-                    <h1 className='text-left'>Welcome to Gemini AI</h1>
-                    <p className='text-left'>Please enter your prompt</p>
-                </div>)
-               }
-              </div>
+                {
+                    aiResponse ? (
+                        <div className='text-left'>
+                            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                                {aiResponse}
+                            </ReactMarkdown>
+                        </div>
+                    ) : (
+                        <div>
+                            <h1 className='text-left'>Welcome to Gemini AI</h1>
+                            <p className='text-left'>Please enter your prompt</p>
+                        </div>
+                    )
+                }
+            </div>
             <div className='fixed bottom-0 left-[310px] right-[10px] rounded-3xl  shadow-lg  flex place-content-center bg-card p-6'>
-               <div className=' w-[600px]'>
-                 <div className='flex flex-col gap-4'>
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-2 relative'>
+                <div className=' w-[600px]'>
+                    <div className='flex flex-col gap-4'>
+                        <form onSubmit={handleSubmit} className='flex flex-col gap-2 relative'>
 
-                        <Textarea
-                            name="prompt"
-                            rows={60}
-                            cols={30}
-                            placeholder="AI Prompt"
-                            className='
+                            <Textarea
+                                name="prompt"
+                                rows={60}
+                                cols={30}
+                                placeholder="AI Prompt"
+                                className='
                                 border 
                                 border-gray-300 
                                 px-4 
@@ -79,15 +80,14 @@ const AiPrompt = () => {
                                 h-20
                                 w-full
                                 rounded-2xl
-
                             '
-                            value={formData.prompt}
-                            onChange={handleChange}
-                            required
-                        />
-                       <Send  className='absolute bottom-2 right-2' onClick={handleSubmit}/>
+                                value={formData.prompt}
+                                onChange={handleChange}
+                                required
+                            />
+                            <Send className='absolute bottom-2 right-2' onClick={handleSubmit} />
 
-                        {/* <button
+                            {/* <button
                             type="submit"
                             className='
                                 bg-primary 
@@ -105,12 +105,12 @@ const AiPrompt = () => {
                         >
                             {loading ? 'Loading...' : 'Submit'}
                         </button> */}
-                    </form>
-               
-                 
-                  
+                        </form>
+
+
+
+                    </div>
                 </div>
-               </div>
             </div>
         </div>
     )

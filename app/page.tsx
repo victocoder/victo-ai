@@ -4,6 +4,7 @@ import Navbar from "@/components/custom/Navbar";
 import SideBar from "@/components/custom/SideBar";
 import Image from "next/image";
 import 'github-markdown-css/github-markdown.css';
+import AiChat from "@/components/custom/AiChat";
 
 export default function Home() {
   console.log("Home",process.env.GEMINI_API_KEY);
@@ -13,7 +14,8 @@ export default function Home() {
       <Navbar />
    
         {/* <CodeBlocComp /> */}
-        <AiPrompt />
+        {/* <AiPrompt /> */}
+        <AiChat />
     </div>
   );
 }

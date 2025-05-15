@@ -252,3 +252,37 @@ export const expertList =[
         systemInstruction:mathsTeacherSystemInstruction,
     }
 ]
+
+export const chatHistory =  [
+      {
+        role: "user",
+        parts: [{ text: "Hello" }],
+      },
+      {
+        role: "model",
+        parts: [{ text: "Great to meet you. What would you like to know?" }],
+      },
+    ];
+export const userPrompt1 = `How to develop a problem-solver mindset?`
+export const sampleResponse1 = `Developing a problem-solver mindset is a journey that involves cultivating specific habits, skills, and perspectives. Here's a breakdown of how you can develop one: **1. Embrace a Growth Mindset:** * **Believe in your ability to learn and improve:** Understand that intelligence and skills are not fixed, but can be developed through dedication and hard work. * **View challenges as opportunities for growth:** Instead of being discouraged by problems, see them as chances to learn and become more resourceful. * **Focus on the process, not just the outcome:** Value the effort, strategies, and lessons learned along the way, even if you don't immediately succeed. * **Learn from failures:** Don't be afraid to make mistakes. Analyze them to understand what went wrong and how to improve next time. **2. Cultivate Critical Thinking and Analytical Skills:** * **Ask questions, and keep asking:** Don't accept things at face value. Challenge assumptions, dig deeper, and seek clarification. Ask "why" repeatedly (the "5 Whys" technique). * **Break down complex problems into smaller, manageable parts:** Deconstructing a problem makes it less overwhelming and easier to analyze. * **Identify the root cause:** Don't just address the symptoms; find the underlying reasons why the problem exists. * **Gather information and evidence:** Research, read, talk to experts, and collect data to understand the problem thoroughly. * **Practice logic and reasoning:** Engage in activities that challenge your logical thinking, such as puzzles, riddles, debates, and coding. **3. Develop Creative Thinking and Innovation:** * **Brainstorming:** Generate as many ideas as possible without judgment. Encourage wild and unconventional solutions. * **Think outside the box:** Challenge conventional wisdom and explore alternative perspectives. * **Seek inspiration from diverse sources:** Look to different fields, cultures, and industries for new ideas and approaches. * **Experiment and iterate:** Try different solutions, evaluate their effectiveness, and refine your approach based on the results. * **Don't be afraid to fail:** Innovation often involves trial and error. Embrace the learning process and keep experimenting. **4. Build Strong Problem-Solving Skills:** * **Define the problem clearly:** State the problem in a concise and specific way. * **Develop a plan:** Outline the steps you'll take to solve the problem. * **Implement your plan:** Take action and put your solution into practice. * **Monitor your progress:** Track your progress and make adjustments as needed. * **Evaluate the results:** Assess whether your solution was effective and identify areas for improvement. * **Learn from your experiences:** Reflect on the problem-solving process and identify lessons learned that you can apply to future challenges. **5. Practice and Apply Your Skills:** * **Seek out problems to solve:** Look for opportunities to apply your problem-solving skills in your personal and professional life. * **Take on new challenges:** Step outside your comfort zone and tackle problems that are more complex and demanding. * **Collaborate with others:** Work with others to solve problems. Learn from their perspectives and experiences. * **Read books and articles on problem-solving:** Expand your knowledge and learn new techniques. * **Play games that require strategic thinking:** Chess, Sudoku, strategy video games, and other games can sharpen your problem-solving skills. **Specific Techniques to Explore:** * **The 5 Whys:** A technique for identifying the root cause of a problem by repeatedly asking "why." * **SWOT Analysis:** A framework for analyzing strengths, weaknesses, opportunities, and threats. * **Fishbone Diagram (Ishikawa Diagram):** A visual tool for identifying potential causes of a problem. * **Design Thinking:** A human-centered approach to problem-solving that emphasizes empathy, experimentation, and iteration. **Key Attitudes to Cultivate:** * **Curiosity:** Be eager to learn and explore new ideas. * **Persistence:** Don't give up easily. Keep trying even when faced with setbacks. * **Optimism:** Believe that problems can be solved. * **Patience:** Solving complex problems often takes time and effort. * **Resilience:** Bounce back from setbacks and learn from your mistakes. By consistently practicing these habits, skills, and perspectives, you can develop a powerful problem-solver mindset that will benefit you in all areas of your life. Good luck!`
+export const userPrompt2 = `give me 5 short steps to master it`
+export const sampleResponse2 = `Okay, here are 5 concise steps to help you start mastering a problem-solver mindset: 1. **Embrace Challenges:** Actively seek out problems, big or small. See them as puzzles to solve, not burdens to avoid. 2. **Define & Simplify:** Break down problems into smaller, more manageable components. Clearly define what you're trying to solve. 3. **Brainstorm Solutions:** Generate multiple potential solutions without judgment. The more ideas, the better the chance of finding a good one. 4. **Test & Iterate:** Choose a solution, implement it, and monitor the results. Be prepared to adjust your approach based on what you learn. 5. **Reflect & Learn:** After solving (or attempting to solve) a problem, take time to analyze what worked, what didn't, and what you can do better next time. This reinforces your skills and mindset.`
+
+export const aiChatHistory = [
+    {
+        role: "user",
+        parts: [{ text: userPrompt1 }],
+    },
+    {
+        role: "model",
+        parts: [{ text: sampleResponse1 }],
+    },
+    {
+        role: "user",
+        parts: [{ text: userPrompt2 }],
+    },
+    {
+        role: "model",
+        parts: [{ text: sampleResponse2 }],
+    },
+]

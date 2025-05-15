@@ -1,5 +1,6 @@
+"use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Select,
   SelectContent,
@@ -10,10 +11,11 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 const SideBar = () => {
+  const [selected, setSelected] = useState("1");
   return (
     <div className="flex flex-col items-center  min-h-screen  border-r-2 border-sidebar-border bg-sidebar  w-[300px] fixed top-0 left-0 p-4">
       <Image src="/logo.png" alt='img' width={110} height={110} />
-      <Select value='1' >
+      <Select onValueChange={setSelected} defaultValue="1" >
         <SelectTrigger className=" w-full" value="1">
           <SelectValue placeholder="Select Your Expert"  />
         </SelectTrigger>
