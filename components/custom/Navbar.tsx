@@ -1,10 +1,9 @@
 import React from 'react'
 import { ModeToggle } from '../ui/theme-togle'
-
+import Image from 'next/image'
 const Navbar = () => {
   return (
-    <div className="flex items-center  justify-between fixed  w-full p-4 z-40 ">
-      <h1 className="text-2xl font-bold mb-4">VICTO AI</h1>
+    <div className="flex items-center ]  justify-between fixed   p-2 z-40  dark:bg-sidebar bg-card top-0 left-[300px] right-[0px]">
       <h1>Mesfin </h1>
       <ModeToggle />
     </div>

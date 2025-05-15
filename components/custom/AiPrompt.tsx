@@ -56,7 +56,7 @@ const AiPrompt = () => {
                 </div>)
                }
               </div>
-            <div className='fixed bottom-0 left-[300px] right-[0px]  shadow-lg  flex place-content-center bg-accent p-6'>
+            <div className='fixed bottom-0 left-[310px] right-[10px] rounded-3xl  shadow-lg  flex place-content-center bg-card p-6'>
                <div className=' w-[600px]'>
                  <div className='flex flex-col gap-4'>
                     <form onSubmit={handleSubmit} className='flex flex-col gap-2 relative'>
@@ -69,7 +69,6 @@ const AiPrompt = () => {
                             className='
                                 border 
                                 border-gray-300 
-                                rounded-md 
                                 px-4 
                                 py-2 
                                 focus:outline-none 
@@ -80,6 +79,7 @@ const AiPrompt = () => {
                                 shadow-sm
                                 h-20
                                 w-full
+                                rounded-2xl
 
                             '
                             value={formData.prompt}
