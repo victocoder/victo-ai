@@ -8,7 +8,7 @@ An ai application like Gemini and ChaGpt with different customization different 
 
 - [Features](#features)
 - [Installation](#installation)
-
+- [API Reference](#api-reference)
 
 ## Features
 
@@ -35,5 +35,19 @@ An ai application like Gemini and ChaGpt with different customization different 
    npm run dev
    ```
 
+## API Reference
 
+### Endpoint 1
 
+**GET** `/api/gemini`
+
+- Description: Accepts user prompt and returns gemini response after asking gemini with the prompt
+- Parameters: 
+  - `prompt`: the text enterd by the user as a prompt for the ai model.
+- Response: 
+  ```json
+  {
+    message: "gimini responded ",
+    response: "long string text responeded by gemini"
+  }
+  ```
