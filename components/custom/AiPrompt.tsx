@@ -7,7 +7,6 @@ import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/github.css' // You can choose a different style from highlight.js
 import usePromtStore from '@/store/usePromptStore';
 import { set } from 'date-fns';
-import { markdownContent } from '@/lib/constants'
 import { Send } from 'lucide-react';
 import { Textarea } from '../ui/textarea';
 import { ProgressIndicator } from '@radix-ui/react-progress';
