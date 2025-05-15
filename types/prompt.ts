@@ -1,0 +1,4 @@
+
+ interface PromptFormData {
+  prompt:string;
+}

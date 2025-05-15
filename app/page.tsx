@@ -5,6 +5,7 @@ import SideBar from "@/components/custom/SideBar";
 import Image from "next/image";
 
 export default function Home() {
+  console.log("Home",process.env.GEMINI_API_KEY);
   return (
     <div>
       <SideBar />
