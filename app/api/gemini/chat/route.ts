@@ -1,4 +1,3 @@
-import { doctorSystemInstruciton } from "@/lib/constants";
 import { GoogleGenAI } from "@google/genai";
 
 export async function POST(req: Request) {
@@ -17,10 +16,6 @@ export async function POST(req: Request) {
     });
 
     const response = await chat.sendMessage({ message });
-    const newMessage = {
-        role: "user",
-        parts: [{ text: message }],
-    };
 
     const newModelReply = {
         role: "model",
