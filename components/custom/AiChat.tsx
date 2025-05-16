@@ -5,17 +5,18 @@ import { Send } from 'lucide-react'
 import { aiChatHistory } from '@/lib/constants'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
+import ThinkingLoader from '../ui/ThinkingLoader'
 const AiChat = () => {
-  const [input, setInput] = useState('');
-  const [history, setHistory] = useState<any[]>([]);
-  const [streamedText, setStreamedText] = useState('');
-  const [isStreaming, setIsStreaming] = useState(false);
-  const [isUserAtBottom, setIsUserAtBottom] = useState(true);
+    const [input, setInput] = useState('');
+    const [history, setHistory] = useState<any[]>([]);
+    const [streamedText, setStreamedText] = useState('');
+    const [isStreaming, setIsStreaming] = useState(false);
+    const [isUserAtBottom, setIsUserAtBottom] = useState(true);
 
-  const chatContainerRef = useRef<HTMLDivElement | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+    const chatContainerRef = useRef<HTMLDivElement | null>(null);
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-const [isUserScrolling, setIsUserScrolling] = useState(false);
+    const [isUserScrolling, setIsUserScrolling] = useState(false);
 
     const handleScroll = (e: Event) => {
         const target = e.currentTarget as HTMLElement;
@@ -45,44 +46,44 @@ const [isUserScrolling, setIsUserScrolling] = useState(false);
         scrollToBottom();
     }, [history]);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+    const sendMessage = async () => {
+        if (!input.trim()) return;
 
-    const userMessage = { role: 'user', parts: [{ text: input }] };
-    const updatedHistory = [...history, userMessage];
+        const userMessage = { role: 'user', parts: [{ text: input }] };
+        const updatedHistory = [...history, userMessage];
 
-    setInput('');
-    setIsStreaming(true);
-    setStreamedText('');
-    setHistory(updatedHistory);
+        setInput('');
+        setIsStreaming(true);
+        setStreamedText('');
+        setHistory(updatedHistory);
 
-    const res = await fetch('/api/gemini/chatstream', {
-      method: 'POST',
-      body: JSON.stringify({
-        message: input,
-        history: updatedHistory,
-      }),
-    });
+        const res = await fetch('/api/gemini/chatstream', {
+            method: 'POST',
+            body: JSON.stringify({
+                message: input,
+                history: updatedHistory,
+            }),
+        });
 
-    const reader = res.body?.getReader();
-    const decoder = new TextDecoder();
-    let fullText = '';
+        const reader = res.body?.getReader();
+        const decoder = new TextDecoder();
+        let fullText = '';
 
-    if (reader) {
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value);
-        fullText += chunk;
-        setStreamedText((prev) => prev + chunk);
-      }
+        if (reader) {
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                const chunk = decoder.decode(value);
+                fullText += chunk;
+                setStreamedText((prev) => prev + chunk);
+            }
 
-      const modelMessage = { role: 'model', parts: [{ text: fullText }] };
-      setHistory((prev) => [...prev, modelMessage]);
-      setStreamedText('');
-      setIsStreaming(false);
-    }
-  };
+            const modelMessage = { role: 'model', parts: [{ text: fullText }] };
+            setHistory((prev) => [...prev, modelMessage]);
+            setStreamedText('');
+            setIsStreaming(false);
+        }
+    };
 
     return (
         <div>
@@ -116,13 +117,17 @@ const [isUserScrolling, setIsUserScrolling] = useState(false);
                 }
                 {isStreaming && (
                     <div className=' pr-4 mb-4'>
+                        {
+                            streamedText ? <div className='text-left rounded-2xl shadow-md px-4 py-2'>
+                                <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                                    {streamedText}
 
-                        <div className='text-left rounded-2xl shadow-md px-4 py-2'>
-                            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                                             {streamedText || '...'}
+                                </ReactMarkdown>
+                            </div> : <div className='text-left rounded-2xl shadow-md px-4 py-2'>
+                                <ThinkingLoader />
+                            </div>
+                        }
 
-                            </ReactMarkdown>
-                        </div>
                     </div>
                     // <div className="flex justify-start">
                     //     <div className="max-w-xs px-4 py-2 rounded-xl bg-white text-gray-900 shadow">
