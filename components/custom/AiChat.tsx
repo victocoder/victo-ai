@@ -87,7 +87,7 @@ const [isUserScrolling, setIsUserScrolling] = useState(false);
     return (
         <div>
             <div ref={chatContainerRef}
-                className='pl-[320px] pt-[70px] mb-[200px] '>
+                className='md:pl-[320px] pt-[70px] mb-[200px] '>
 
                 {
                     history.map((entry, index) => (
@@ -134,8 +134,8 @@ const [isUserScrolling, setIsUserScrolling] = useState(false);
 
                 <div ref={messagesEndRef} />
             </div>
-            <div className='fixed bottom-0 left-[310px] right-[10px] rounded-3xl  shadow-lg  flex place-content-center bg-card p-6'>
-                <div className=' w-[600px]'>
+            <div className='fixed bottom-0 md:left-[310px] md:right-[10px] rounded-3xl  shadow-lg  flex place-content-center bg-card p-6 max-md:w-full'>
+                <div className='w-full md:w-[600px]'>
                     <div className='flex flex-col gap-4'>
                         <form className='flex flex-col gap-2 relative'>
 
