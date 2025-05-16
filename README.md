@@ -22,7 +22,7 @@ An ai application like Gemini and ChaGpt with different customization different 
 - [Tailwindcss](https://tailwindcss.com/)
 - [Shadcn-Ui](https://ui.shadcn.com/)
 - [Google Gemini ](https://ai.google.dev/gemini-api/docs/text-generation)
-
+- [React Mark down](https://www.npmjs.com/package/react-markdown)
 ## Installation
 
 1. Clone the repository:
