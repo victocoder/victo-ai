@@ -15,12 +15,15 @@ const SideBarContent = () => {
       const [selected, setSelected] = useState("1");
 
   return (
-    <div>
+    <div className='w-full flex place-items-center flex-col gap-4 max-md:p-4'>
+      
       <Image src="/logo.png" alt='img' width={110} height={110} />
       <Select onValueChange={setSelected} defaultValue="1" >
-        <SelectTrigger className=" w-full" value="1">
+         <p>Your Expert Advisors</p>
+        <SelectTrigger className=" w-full" value="1" disabled={true}>
           <SelectValue placeholder="Select Your Expert"  />
         </SelectTrigger>
+       
         <SelectContent>
           <SelectGroup >
             <SelectLabel>Select Your Expert</SelectLabel>
@@ -34,11 +37,17 @@ const SideBarContent = () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <section>
-        <div>
-          <p>How to become an expert</p>
-        </div>
-      </section>
+      <div className='flex gap-2 justify-start items-start flex-col opacity-40'>
+        <p>Comming soon</p>
+        <ul className=''>
+            <li>MR. Lawyer</li>
+            <li>MR. Coding Teacher</li>
+            <li>MR. Matimtics Teacher</li>
+            <li>MR. Physics Teacher</li>
+            <li>MR. Romance Councler</li>
+            <li>MR. Business Councler</li>
+        </ul>
+      </div>
     </div>
   )
 }
