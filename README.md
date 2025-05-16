@@ -10,6 +10,7 @@ An ai application like Gemini and ChaGpt with different customization different 
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [API Reference](#api-reference)
+- [Screeen Shoot](#api-reference)
 
 ## Features
 
@@ -28,11 +29,11 @@ An ai application like Gemini and ChaGpt with different customization different 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/victocoder/vitcoto-ai.git
+   git clone https://github.com/victocoder/victo-ai.git
    ```
 2. Navigate into the project directory:
    ```bash
-   cd vitcoto-ai
+   cd victo-ai
    ```
 3. Install the dependencies:
    ```bash
@@ -59,3 +60,7 @@ An ai application like Gemini and ChaGpt with different customization different 
     response: "long string text responeded by gemini"
   }
   ```
+
+  ## Screen Shoot
+
+  ![Screenshot 1](./public/screenshoot/screenshoot1.png)
