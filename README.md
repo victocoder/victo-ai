@@ -7,14 +7,21 @@ An ai application like Gemini and ChaGpt with different customization different 
 ## Table of Contents
 
 - [Features](#features)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [API Reference](#api-reference)
 
 ## Features
 
 - Chat with text
-- Image generating
+- Chat Streaming
 
+## Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Shadcn-Ui](https://ui.shadcn.com/)
+- [Google Gemini ](https://ai.google.dev/gemini-api/docs/text-generation)
 
 ## Installation
 
