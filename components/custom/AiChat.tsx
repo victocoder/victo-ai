@@ -129,12 +129,6 @@ const AiChat = () => {
                         }
 
                     </div>
-                    // <div className="flex justify-start">
-                    //     <div className="max-w-xs px-4 py-2 rounded-xl bg-white text-gray-900 shadow">
-                    //         {streamedText}
-                    //         <span className="animate-pulse text-gray-400">|</span>
-                    //     </div>
-                    // </div>
                 )}
 
                 <div ref={messagesEndRef} />
@@ -173,8 +167,9 @@ const AiChat = () => {
                                 // onChange={handleChange}
                                 required
                             />
-                            <Send className='absolute bottom-2 right-2' onClick={sendMessage}
-                            />
+                           <div className="bg-primary rounded-full absolute bottom-2 right-2 p-2 animate-pulse cursor-pointer">
+    <Send className="" onClick={sendMessage} />
+</div>
                         </form>
 
 

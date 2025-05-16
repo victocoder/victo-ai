@@ -38,7 +38,7 @@ const SideBarContent = () => {
         </SelectContent>
       </Select>
       <div className='flex gap-2 justify-start items-start flex-col opacity-40'>
-        <p>Comming soon</p>
+        <p>Coming soon</p>
         <ul className=''>
             <li>MR. Lawyer</li>
             <li>MR. Coding Teacher</li>

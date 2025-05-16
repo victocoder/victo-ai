@@ -16,10 +16,9 @@ An AI-powered application that integrates Gemini to deliver real-time, multi-con
 
 - Chat with text
 - Chat Streaming
-- Different experts 
 - Mobile Responsive
 - Dark and Light Mode theme
-
+- Different experts 
 
 ## Technologies Used
 
