@@ -20,7 +20,7 @@ const SideBarContent = () => {
       <Image src="/logo.png" alt='img' width={110} height={110} />
       <Select onValueChange={setSelected} defaultValue="1" >
          <p>Your Expert Advisors</p>
-        <SelectTrigger className=" w-full" value="1" disabled={true}>
+        <SelectTrigger className=" w-full" value="1" >
           <SelectValue placeholder="Select Your Expert"  />
         </SelectTrigger>
        
