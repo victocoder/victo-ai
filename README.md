@@ -2,7 +2,7 @@
 
 ![Project Logo](./public/logo.png)
 
-An ai application like Gemini and ChaGpt with different customization different styling and multi theme , You can customize it and make it  act like any expert you want it to be.
+An AI-powered application that integrates Gemini to deliver real-time, multi-conversation chat streaming using APIs provided by Google Gemini. The app features a range of virtual experts—including doctors, lawyers, and teachers—each trained to provide professional advice within their field. Users can choose an expert based on their needs and begin interactive conversations instantly.
 
 ## Table of Contents
 
@@ -16,14 +16,18 @@ An ai application like Gemini and ChaGpt with different customization different 
 
 - Chat with text
 - Chat Streaming
+- Mobile Responsive
+- Different experts 
 
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/)
+- [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
 - [Tailwindcss](https://tailwindcss.com/)
 - [Shadcn-Ui](https://ui.shadcn.com/)
 - [Google Gemini ](https://ai.google.dev/gemini-api/docs/text-generation)
 - [React Mark down](https://www.npmjs.com/package/react-markdown)
+
 
 ## Installation
 
