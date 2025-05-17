@@ -1,13 +1,16 @@
 import { create } from 'zustand'
 import axios from 'axios'
-import { AuthCredentials, RegisterFormData, User } from '@/types/auth'
+import { AuthCredentials, LoginFormData, RegisterFormData, User } from '@/types/auth'
 import { redirect } from 'next/navigation'
+import { auth } from '@/lib/auth'
+import { authClient } from '@/lib/auth-client'
+import router from 'next/router'
 
 interface AuthState {
   user: User | null
   loading: boolean
   error: string | null
-  registerUser: (formData: RegisterFormData) => Promise<void>
+  registerUser: (formData: LoginFormData) => Promise<void>
   loginUser: (formData: AuthCredentials) => Promise<string>
   logout: () => void
 }
@@ -23,8 +26,8 @@ const useAuthStore = create<AuthState>((set) => ({
 
     try {
       const response = await axios.post('/api/register', formData)
-      set({ user: response.data.user, loading: false })
-      
+      set({ user: response.data.registerdata, loading: false })
+
     } catch (error: any) {
       set({
         error: error?.response?.data?.message || 'Registration failed',
@@ -33,11 +36,12 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-    loginUser: async (formData: AuthCredentials) => {
+  loginUser: async (formData: AuthCredentials) => {
     set({ loading: true, error: null })
     try {
-      const res = await axios.post('/api/login', formData)
-      set({ user: res.data.user, loading: false })
+      const { data, error } = await authClient.signIn.email(formData)
+      console.log("betterauth-login-response", data)
+      set({ user: data?.user, loading: false })
       return "success"
     } catch (err: any) {
       set({
@@ -48,7 +52,16 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  logout: () => set({ user: null }),
+  logout: async () => {
+   const {data,error}= await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login"); // redirect to login page
+        },
+      },
+    });
+    set({ user: null })
+  },
 }))
 
 export default useAuthStore

@@ -30,7 +30,6 @@ const AiPrompt = () => {
         e.preventDefault()
 
         const aiResponse = await askAi(formData);
-        console.log(aiResponse)
 
     }
     return (

@@ -18,7 +18,6 @@ export async function POST(req: Request) {
         },
         
     });
-    console.log("response", response.text);
     if (!response.text) {
         throw new Error('Failed to fetch response')
     }
