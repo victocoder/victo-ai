@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 
 const RegisterForm = () => {
   const router = useRouter()
-  const { registerUser, user, loading, error } = useAuthStore()
+  const { registerUser, loading, error } = useAuthStore()
   const [formData, setFormData] = useState<RegisterFormData>({
     email: '',
     password: '',
