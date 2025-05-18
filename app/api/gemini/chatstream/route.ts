@@ -1,13 +1,12 @@
 // app/api/chat/route.ts
-import { doctorSystemInstruciton } from "@/lib/constants";
+import { doctorSystemInstruciton, expertList } from "@/lib/constants";
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest } from "next/server";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
 export async function POST(req: NextRequest) {
-    const { message, history } = await req.json();
-
+    const { message, history,expert } = await req.json();
     const encoder = new TextEncoder();
 
     const stream = new ReadableStream({
@@ -16,7 +15,7 @@ export async function POST(req: NextRequest) {
                 const chat = ai.chats.create({
                     model: "gemini-2.0-flash",
                     config: {
-                        systemInstruction: doctorSystemInstruciton,
+                        systemInstruction: expertList.filter((val) =>Number(expert.id)==val.num)[0].systemInstruction,
                     },
                     history,
                 });

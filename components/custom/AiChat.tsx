@@ -6,8 +6,10 @@ import { aiChatHistory } from '@/lib/constants'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import ThinkingLoader from '../ui/ThinkingLoader'
+import useExpertStore from '@/store/useExpertStore'
 const AiChat = () => {
     const [input, setInput] = useState('');
+    const [placeHolder, setPlaceHolder] = useState('Hello');
     const [history, setHistory] = useState<any[]>([]);
     const [streamedText, setStreamedText] = useState('');
     const [isStreaming, setIsStreaming] = useState(false);
@@ -15,7 +17,7 @@ const AiChat = () => {
 
     const chatContainerRef = useRef<HTMLDivElement | null>(null);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
+    const { expert } = useExpertStore()
     const [isUserScrolling, setIsUserScrolling] = useState(false);
 
     const handleScroll = (e: Event) => {
@@ -45,14 +47,20 @@ const AiChat = () => {
     useEffect(() => {
         scrollToBottom();
     }, [history]);
+    useEffect(() => {
+        setPlaceHolder(`Ask ${expert.name}`)
+        setHistory([])
+        // sendMessage()
 
+
+    }, [expert])
     const sendMessage = async () => {
         if (!input.trim()) return;
 
         const userMessage = { role: 'user', parts: [{ text: input }] };
         const updatedHistory = [...history, userMessage];
 
-        setInput('');
+        // setInput('');
         setIsStreaming(true);
         setStreamedText('');
         setHistory(updatedHistory);
@@ -62,6 +70,7 @@ const AiChat = () => {
             body: JSON.stringify({
                 message: input,
                 history: updatedHistory,
+                expert: expert
             }),
         });
 
@@ -81,6 +90,7 @@ const AiChat = () => {
             const modelMessage = { role: 'model', parts: [{ text: fullText }] };
             setHistory((prev) => [...prev, modelMessage]);
             setStreamedText('');
+            setInput("")
             setIsStreaming(false);
         }
     };
@@ -91,7 +101,12 @@ const AiChat = () => {
                 className='md:pl-[320px] pt-[70px] mb-[200px] '>
 
                 {
-                    history.map((entry, index) => (
+                   history.length == 0 ?<div className =" flex flex-col justify-center items-center gap-4 pt-20">
+                    <h1 className="text-2xl font-extrabold">{expert.name}</h1>
+                    <p className="text-center">{expert.expertDiscription}</p>
+                   </div>:<> 
+                   {
+                     history.map((entry, index) => (
                         <div key={index}>
                             {
                                 entry.role == "user" ?
@@ -114,6 +129,8 @@ const AiChat = () => {
                             }
                         </div>
                     ))
+                   }
+                   </>
                 }
                 {isStreaming && (
                     <div className=' pr-4 mb-4'>
@@ -142,7 +159,7 @@ const AiChat = () => {
                                 name="prompt"
                                 rows={60}
                                 cols={30}
-                                placeholder="AI Prompt"
+                                placeholder={placeHolder}
                                 className='
                                 border 
                                 border-gray-300 
@@ -167,9 +184,9 @@ const AiChat = () => {
                                 // onChange={handleChange}
                                 required
                             />
-                           <div className="bg-primary rounded-full absolute bottom-2 right-2 p-2 animate-pulse cursor-pointer">
-    <Send className="" onClick={sendMessage} />
-</div>
+                            <div className="bg-primary rounded-full absolute bottom-2 right-2 p-2 animate-pulse cursor-pointer">
+                                <Send className=""  onClick={sendMessage} />
+                            </div>
                         </form>
 
 

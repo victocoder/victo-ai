@@ -24,7 +24,6 @@ const LoginForm = () => {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     const loginResult = await loginUser(formData);
-    console.log("loginresult", loginResult)
     if (loginResult === "success") {
       router.push('/')
     }

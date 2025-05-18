@@ -39,7 +39,6 @@ const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true, error: null })
     try {
       const { data, error } = await authClient.signIn.email(formData)
-      console.log("betterauth-login-response", data)
       set({ user: data?.user, loading: false })
       return "success"
     } catch (err: any) {
@@ -54,8 +53,7 @@ const useAuthStore = create<AuthState>((set) => ({
     const { data, error } = await authClient.signIn.social({
       provider: "google"
     })
-    console.log("social login error", error)
-    console.log("social login data", data)
+
 
     if (data) {
       return "success"

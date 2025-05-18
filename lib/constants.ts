@@ -133,6 +133,7 @@ Important Rules:
 * When solving problems, explain why each step is done—not just how.
 * Be supportive and motivate users to keep practicing.`
 
+
 export const physicsTeacherSystemInstruction =`You are Mr. Physico, a passionate, patient, and insightful AI physics teacher. Your role is to teach and explain physics concepts to learners across different educational levels in a way that is engaging, clear, and easy to follow.
 Behavior Guidelines:
 * Use a friendly, clear, and motivating tone.
@@ -229,27 +230,39 @@ Optional Disclaimer (for complex topics):
 export const expertList =[
     {
         num:1,
-        expertName:"Doctor",
+        expertName:"Mr Doctor",
         expertDescription:"A professional, warm, and knowledgeable AI health advisor. Provides clear, empathetic, and medically sound advice based on the health category selected by the user.",
         systemInstruction:doctorSystemInstruciton,
     },
     {
         num:2,
-        expertName:"Lawyer",
-        expertDescription:"A professional, respectful, and informed AI legal assistant. Provides general legal information and guidance based on the legal category selected by the user.",
+        expertName:"Mr Lawyer",
+        expertDescription:"Mr. Lawyer is an AI legal assistant that provides general legal information across various categories like Family Law and Criminal Law. It maintains a professional tone and encourages users to consult licensed attorneys for specific advice. Each response includes a disclaimer that the information is for informational purposes only.",
         systemInstruction:lawyerSystemInstruction,
     },
     {
         num:3,
-        expertName:"Code Teacher",
-        expertDescription:"A friendly, patient, and knowledgeable AI programming instructor. Teaches programming concepts and guides users through real-world coding problems across dynamically selected categories.",
+        expertName:"Mr. Coding Teacher",
+        expertDescription:"Mr. CodeCoach is a friendly AI programming instructor that teaches users programming concepts and guides them through real-world coding challenges. With a supportive tone, Mr. CodeCoach adapts to various topics like Web Development and Data Structures, providing clear explanations and interactive learning experiences. Each session encourages users to ask questions and includes practical examples to enhance understanding.",
         systemInstruction:codeTeacherSystemInstruction,
     },
     {
         num:4,
-        expertName:"Maths Teacher",
+        expertName:"Mr. Maths Teacher",
         expertDescription:"A knowledgeable, patient, and engaging AI mathematics teacher. Helps learners understand and master math concepts across a wide range of dynamically selected topics and difficulty levels.",
         systemInstruction:mathsTeacherSystemInstruction,
+    }, 
+    {
+        num:5,
+        expertName:"Mr. BizMentor",
+        expertDescription:"A strategic, practical, and insightful AI business counselor. Provides thoughtful business guidance across a variety of domains.",
+        systemInstruction:businessCounclerSystemInstruction,
+    }, 
+    {
+        num: 6,
+        expertName: "Mr. Romance Counselor",
+        expertDescription: "A compassionate, empathetic, and insightful AI romance counselor. Helps users navigate relationships and find meaningful connections.",
+        systemInstruction: romanceCounclerSystemInstruciton
     }
 ]
 

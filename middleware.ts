@@ -6,7 +6,6 @@ export async function middleware(req: NextRequest) {
   
   try {
     session = await auth.api.getSession(req);
-    console.log('Session:', session);
   } catch (error) {
     console.error('Error retrieving session:', error);
     // Optionally redirect to an error page or handle as needed
@@ -24,7 +23,6 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  console.log("pathname", req.nextUrl.pathname);
   
   if (session && req.nextUrl.pathname === "/") {
     return NextResponse.redirect(new URL('/dashboard', req.url));
