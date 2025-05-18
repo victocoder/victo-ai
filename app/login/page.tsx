@@ -9,6 +9,8 @@ import { ModeToggle } from '@/components/ui/theme-togle'
 import { useRouter } from 'next/navigation'
 import { FaGoogle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { auth } from '@/lib/auth'
+import { authClient } from '@/lib/auth-client'
 const container = {
   hidden: {},
   visible: {
@@ -43,13 +45,16 @@ const LoginForm = () => {
     e.preventDefault()
     const loginResult = await loginUser(formData);
     if (loginResult === "success") {
+      const { data: session } = await authClient.getSession()
+      if(session){
       router.push('/')
+      }
     }
 
   }
 
   return (
-   <motion.section
+    <motion.section
       className='flex flex-col items-center justify-center min-h-screen gap-4'
       variants={container}
       initial="hidden"
