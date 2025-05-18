@@ -12,7 +12,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { LogOut, PersonStanding, User2 } from 'lucide-react'
+import { LogOut, PersonStanding, User, User2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ModeToggle } from '../ui/theme-togle'
 
@@ -46,8 +46,8 @@ const UserProfileIcon = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                     <div className='flex gap-4 p-2 cursor-pointer'>
-                        <User2 className='cursor-pointer' />
-                        <span>{session?.user.email}</span>
+                        <User className='cursor-pointer' />
+                        <span className='cursor-pointer'>{session?.user.name}</span>
                     </div>
 
 

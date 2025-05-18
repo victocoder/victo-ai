@@ -1,17 +1,15 @@
 import { create } from 'zustand'
 import axios from 'axios'
-import { AuthCredentials, LoginFormData, RegisterFormData, User } from '@/types/auth'
+import { AuthCredentials, LoginFormData, RegisterFormData } from '@/types/auth'
 import { authClient } from '@/lib/auth-client'
 import router from 'next/router'
 
 interface AuthState {
-  user: User | null
   loading: boolean
   error: string | null
   registerUser: (formData: LoginFormData) => Promise<void>
   loginUser: (formData: AuthCredentials) => Promise<string>
   loginWithGoogle: () => Promise<string>
-  logout: () => void
 }
 
 
@@ -25,7 +23,7 @@ const useAuthStore = create<AuthState>((set) => ({
 
     try {
       const response = await axios.post('/api/register', formData)
-      set({ user: response.data.registerdata, loading: false })
+      set({loading: false })
 
     } catch (error: any) {
       set({
@@ -39,7 +37,6 @@ const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true, error: null })
     try {
       const { data, error } = await authClient.signIn.email(formData)
-      set({ user: data?.user, loading: false })
       return "success"
     } catch (err: any) {
       set({
@@ -63,16 +60,6 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  logout: async () => {
-    const { data, error } = await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/login"); // redirect to login page
-        },
-      },
-    });
-    set({ user: null })
-  },
 
 }))
 

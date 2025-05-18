@@ -11,7 +11,7 @@ import { FaGoogle } from "react-icons/fa";
 
 const LoginForm = () => {
   const router = useRouter()
-  const { loginUser, user, loginWithGoogle, loading, error } = useAuthStore()
+  const { loginUser, loginWithGoogle, loading, error } = useAuthStore()
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: '',

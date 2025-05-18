@@ -14,12 +14,12 @@ export default function Home() {
   return (
     <div className=" flex flex-col justify-center items-center h-screen gap-4 p-4">
       <div className=" max-w-[600px] flex justify-center items-center flex-col gap-4">
+        <Image src="/logo.png" alt='img' width={310} height={310} />
         <h1 className="lg:text-8xl text-4xl sm:*:text-6xl font-bold">VICTO AI</h1>
-        <p>Your Trusted Companion</p>
-        <p className="text-center">Different Ai Experts to help you in any walk of you laife, know </p>
+        <p className="text-center">Various AI experts are available to assist you in every aspect of your life.</p>
       </div>
       <div>
-        <Button className="text-white" onClick={()=>router.push("/login")}  >Get Started</Button>
+        <Button size="lg" className="text-white cursor-pointer" onClick={()=>router.push("/login")}  >Get Started</Button>
       </div>
     </div>
   );
