@@ -66,7 +66,6 @@ const RegisterForm = () => {
           {loading ? 'Registering...' : 'Register'}
         </Button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        {user && <p>Welcome, {user.email}!</p>}
       </form>
       </div>
     </section>
