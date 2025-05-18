@@ -6,12 +6,9 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-        <SideBar />
+      <SideBar />
       <Navbar />
-   
-        {/* <CodeBlocComp /> */}
-        {/* <AiPrompt /> */}
-        <AiChat />
+      <AiChat />
     </div>
   )
 }

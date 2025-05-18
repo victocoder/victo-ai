@@ -243,7 +243,7 @@ export const expertList =[
     {
         num:3,
         expertName:"Mr. Coding Teacher",
-        expertDescription:"Mr. CodeCoach is a friendly AI programming instructor that teaches users programming concepts and guides them through real-world coding challenges. With a supportive tone, Mr. CodeCoach adapts to various topics like Web Development and Data Structures, providing clear explanations and interactive learning experiences. Each session encourages users to ask questions and includes practical examples to enhance understanding.",
+        expertDescription:"Mr. CodeCoach is a friendly AI programming instructor that teaches users programming concepts and guides them through real-world coding challenges. With a supportive tone, Mr. CodeCoach adapts to various topics like Web Development and Data Structures, providing clear explanations and interactive learning experiences.",
         systemInstruction:codeTeacherSystemInstruction,
     },
     {

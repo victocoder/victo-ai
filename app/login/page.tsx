@@ -8,6 +8,24 @@ import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/ui/theme-togle'
 import { useRouter } from 'next/navigation'
 import { FaGoogle } from "react-icons/fa";
+import { motion } from "framer-motion";
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const LoginForm = () => {
   const router = useRouter()
@@ -31,42 +49,85 @@ const LoginForm = () => {
   }
 
   return (
-    <section className='flex flex-col items-center justify-center min-h-screen gap-4'>
-      <div className='p-6  rounded-lg w-full max-w-lg m-auto'>
-        <div className='fixed top-0 right-0 p-8'>
+   <motion.section
+      className='flex flex-col items-center justify-center min-h-screen gap-4'
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div
+        className='p-6 rounded-lg w-full max-w-lg m-auto'
+        variants={container}
+      >
+        <motion.div className='fixed top-0 right-0 p-8' variants={fadeUp}>
           <ModeToggle />
-        </div>
-        <h1 className='text-2xl font-bold mb-4 text-center'>Login</h1>
+        </motion.div>
 
-        <p className='mb-4 text-center'>Login to your account</p>
-        <form onSubmit={handleSubmit} className='w-full  space-y-4   rounded-lg '>
+        <motion.h1
+          className='text-2xl font-bold mb-4 text-center'
+          variants={fadeUp}
+        >
+          Login
+        </motion.h1>
 
-          <Input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className='w-full'
-          />
-          <Input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <Button type="submit" disabled={loading} className='w-full cursor-pointer'>
-            {loading ? 'Login...' : 'Login'}
+        <motion.p className='mb-4 text-center' variants={fadeUp}>
+          Login to your account
+        </motion.p>
+
+        <motion.form
+          onSubmit={handleSubmit}
+          className='w-full space-y-4 rounded-lg'
+          variants={container}
+        >
+          <motion.div variants={fadeUp}>
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className='w-full'
+            />
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <Input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className='w-full'
+            />
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <Button type="submit" disabled={loading} className='w-full cursor-pointer'>
+              {loading ? 'Login...' : 'Login'}
+            </Button>
+          </motion.div>
+
+          {error && (
+            <motion.p variants={fadeUp} style={{ color: 'red' }}>
+              {error}
+            </motion.p>
+          )}
+        </motion.form>
+
+        <motion.div variants={fadeUp}>
+          <Button
+            onClick={() => loginWithGoogle()}
+            variant="outline"
+            className='w-full mt-4 cursor-pointer'
+          >
+            <FaGoogle className="mr-2" />
+            Continue with Google
           </Button>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-        </form>
-        <Button onClick={() => loginWithGoogle()} variant="outline" className='w-full mt-4 cursor-pointer'> <FaGoogle /> Continue with Google</Button>
-
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   )
 }
 

@@ -7,6 +7,25 @@ import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import ThinkingLoader from '../ui/ThinkingLoader'
 import useExpertStore from '@/store/useExpertStore'
+import { motion } from "framer-motion";
+
+const container = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: "easeOut" },
+    },
+};
 const AiChat = () => {
     const [input, setInput] = useState('');
     const [placeHolder, setPlaceHolder] = useState('Hello');
@@ -101,36 +120,47 @@ const AiChat = () => {
                 className='md:pl-[320px] pt-[70px] mb-[200px] '>
 
                 {
-                   history.length == 0 ?<div className =" flex flex-col justify-center items-center gap-4 pt-20">
-                    <h1 className="text-2xl font-extrabold">{expert.name}</h1>
-                    <p className="text-center">{expert.expertDiscription}</p>
-                   </div>:<> 
-                   {
-                     history.map((entry, index) => (
-                        <div key={index}>
-                            {
-                                entry.role == "user" ?
-                                    <div className='flex justify-end  pr-4 mb-4'>
+                    history.length == 0 ? <motion.div
+                      key={expert.name}
+                        className="flex flex-col justify-center items-center gap-4 pt-20"
+                        variants={container}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <motion.h1 className="text-2xl font-extrabold" variants={fadeUp}>
+                            {expert.name}
+                        </motion.h1>
 
-                                        <div className='bg-card text-left rounded-2xl shadow-md px-4 py-2'>
-                                            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                                                {entry.parts[0].text}
-                                            </ReactMarkdown>
-                                        </div>
-                                    </div> :
-                                    <div className=' pr-4 mb-4'>
+                        <motion.p className="text-center max-w-[600px]" variants={fadeUp}>
+                            {expert.expertDiscription}
+                        </motion.p>
+                    </motion.div> : <>
+                        {
+                            history.map((entry, index) => (
+                                <div key={index}>
+                                    {
+                                        entry.role == "user" ?
+                                            <div className='flex justify-end  pr-4 mb-4'>
 
-                                        <div className='text-left rounded-2xl shadow-md px-4 py-2'>
-                                            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                                                {entry.parts[0].text.toString()}
-                                            </ReactMarkdown>
-                                        </div>
-                                    </div>
-                            }
-                        </div>
-                    ))
-                   }
-                   </>
+                                                <div className='bg-card text-left rounded-2xl shadow-md px-4 py-2'>
+                                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                                                        {entry.parts[0].text}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            </div> :
+                                            <div className=' pr-4 mb-4'>
+
+                                                <div className='text-left rounded-2xl shadow-md px-4 py-2'>
+                                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                                                        {entry.parts[0].text.toString()}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            </div>
+                                    }
+                                </div>
+                            ))
+                        }
+                    </>
                 }
                 {isStreaming && (
                     <div className=' pr-4 mb-4'>
@@ -185,7 +215,7 @@ const AiChat = () => {
                                 required
                             />
                             <div className="bg-primary rounded-full absolute bottom-2 right-2 p-2 animate-pulse cursor-pointer">
-                                <Send className=""  onClick={sendMessage} />
+                                <Send className="" onClick={sendMessage} />
                             </div>
                         </form>
 
