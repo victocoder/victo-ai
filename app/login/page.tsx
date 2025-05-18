@@ -47,7 +47,7 @@ const LoginForm = () => {
     if (loginResult === "success") {
       const { data: session } = await authClient.getSession()
       if(session){
-      router.push('/')
+      router.push('/dashboard')
       }
     }
 

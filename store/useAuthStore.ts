@@ -37,6 +37,7 @@ const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true, error: null })
     try {
       const { data, error } = await authClient.signIn.email(formData)
+      set({loading:false})
       return "success"
     } catch (err: any) {
       set({
