@@ -1,8 +1,6 @@
 import { create } from 'zustand'
 import axios from 'axios'
 import { AuthCredentials, LoginFormData, RegisterFormData, User } from '@/types/auth'
-import { redirect } from 'next/navigation'
-import { auth } from '@/lib/auth'
 import { authClient } from '@/lib/auth-client'
 import router from 'next/router'
 
@@ -12,6 +10,7 @@ interface AuthState {
   error: string | null
   registerUser: (formData: LoginFormData) => Promise<void>
   loginUser: (formData: AuthCredentials) => Promise<string>
+  loginWithGoogle: () => Promise<string>
   logout: () => void
 }
 
@@ -51,9 +50,23 @@ const useAuthStore = create<AuthState>((set) => ({
       return "error";
     }
   },
+  loginWithGoogle: async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google"
+    })
+    console.log("social login error", error)
+    console.log("social login data", data)
+
+    if (data) {
+      return "success"
+    }
+    else {
+      return "error"
+    }
+  },
 
   logout: async () => {
-   const {data,error}= await authClient.signOut({
+    const { data, error } = await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
           router.push("/login"); // redirect to login page
@@ -62,6 +75,7 @@ const useAuthStore = create<AuthState>((set) => ({
     });
     set({ user: null })
   },
+
 }))
 
 export default useAuthStore

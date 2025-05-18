@@ -7,10 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/ui/theme-togle'
 import { useRouter } from 'next/navigation'
+import { FaGoogle } from "react-icons/fa";
 
 const LoginForm = () => {
   const router = useRouter()
-  const { loginUser, user, loading, error } = useAuthStore()
+  const { loginUser, user, loginWithGoogle, loading, error } = useAuthStore()
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: '',
@@ -32,14 +33,14 @@ const LoginForm = () => {
 
   return (
     <section className='flex flex-col items-center justify-center min-h-screen gap-4'>
-      <div className='shadow-lg p-6  rounded-lg w-full max-w-lg m-auto'>
+      <div className='p-6  rounded-lg w-full max-w-lg m-auto'>
         <div className='fixed top-0 right-0 p-8'>
           <ModeToggle />
         </div>
-                  <h1 className='text-2xl font-bold mb-4 text-center'>Login</h1> 
+        <h1 className='text-2xl font-bold mb-4 text-center'>Login</h1>
 
         <p className='mb-4 text-center'>Login to your account</p>
-        <form onSubmit={handleSubmit} className='w-full  space-y-4  p-4 rounded-lg '>
+        <form onSubmit={handleSubmit} className='w-full  space-y-4   rounded-lg '>
 
           <Input
             name="email"
@@ -63,6 +64,8 @@ const LoginForm = () => {
           </Button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
+        <Button onClick={() => loginWithGoogle()} variant="outline" className='w-full mt-4 cursor-pointer'> <FaGoogle /> Continue with Google</Button>
+
       </div>
     </section>
   )
