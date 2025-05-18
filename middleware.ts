@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
   } catch (error) {
     console.error('Error retrieving session:', error);
     // Optionally redirect to an error page or handle as needed
-    return NextResponse.redirect(new URL('/', req.url));
+    // return NextResponse.redirect(new URL('/', req.url));
   }
 
   // Define the protected paths
