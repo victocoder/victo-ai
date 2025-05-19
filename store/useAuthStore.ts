@@ -7,7 +7,7 @@ import router from 'next/router'
 interface AuthState {
   loading: boolean
   error: string | null
-  registerUser: (formData: LoginFormData) => Promise<void>
+  registerUser: (formData: LoginFormData) => Promise<boolean>
   loginUser: (formData: AuthCredentials) => Promise<string>
   loginWithGoogle: () => Promise<string>
 }
@@ -24,12 +24,13 @@ const useAuthStore = create<AuthState>((set) => ({
     try {
       const response = await axios.post('/api/register', formData)
       set({loading: false })
-
+      return true;
     } catch (error: any) {
       set({
         error: error?.response?.data?.message || 'Registration failed',
         loading: false,
       })
+      return false
     }
   },
 

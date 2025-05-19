@@ -10,6 +10,7 @@ import { ModeToggle } from '@/components/ui/theme-togle'
 import { useRouter } from 'next/navigation'
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
+import { toast } from "sonner";
 const container = {
   hidden: {},
   visible: {
@@ -29,7 +30,7 @@ const fadeUp = {
 }
 const RegisterForm = () => {
   const router = useRouter()
-  const { registerUser, loading, error,loginWithGoogle } = useAuthStore()
+  const { registerUser, loading, error, loginWithGoogle } = useAuthStore()
   const [formData, setFormData] = useState<RegisterFormData>({
     email: '',
     password: '',
@@ -43,9 +44,20 @@ const RegisterForm = () => {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     const loginResult = await registerUser(formData);
-    //  if(loginResult === "success"){
-    //   router.push('/')
-    //  }
+    if (loginResult) {
+      // router.push('/login')
+      toast.success("Registration successful", {
+        description: `You can login with ${formData.email}`,
+
+        action: {
+          label: "Login",
+          onClick: () => router.push("/login"),
+        },
+      })
+    } else {
+      toast.error("Registration failed")
+
+    }
 
   }
 
