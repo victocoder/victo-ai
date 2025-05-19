@@ -11,6 +11,7 @@ import { FaGoogle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { auth } from '@/lib/auth'
 import { authClient } from '@/lib/auth-client'
+import Link from 'next/link'
 const container = {
   hidden: {},
   visible: {
@@ -33,8 +34,8 @@ const LoginForm = () => {
   const router = useRouter()
   const { loginUser, loginWithGoogle, loading, error } = useAuthStore()
   const [formData, setFormData] = useState<LoginFormData>({
-    email: '',
-    password: '',
+    email: 'test@gmail.com',
+    password: '12345678',
   })
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
@@ -120,7 +121,10 @@ const LoginForm = () => {
             </motion.p>
           )}
         </motion.form>
-
+        <motion.div variants={fadeUp} className='flex gap-4 justify-center items-center pt-2'>
+          <span>Don't have an account?</span>
+          <Link className='ml-2 text-primary cursor-pointer underline' href="/register">Register</Link>
+        </motion.div>
         <motion.div variants={fadeUp}>
           <Button
             onClick={() => loginWithGoogle()}
