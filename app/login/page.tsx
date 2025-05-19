@@ -47,7 +47,7 @@ const LoginForm = () => {
     e.preventDefault()
     const loginResult = await loginUser(formData);
     if (loginResult) {
-      router.push('/login')
+      router.push('/dashboard')
      
     } 
 
