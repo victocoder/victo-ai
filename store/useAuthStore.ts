@@ -24,8 +24,8 @@ const useAuthStore = create<AuthState>((set) => ({
     const { data, error } = await authClient.signUp.email({ email: formData.email, password: formData.password, name: formData.name }, {
       onError(ctx) {
         //handle error
-        toast.error(ctx.error.message)
-        set({ error: ctx.error.message })
+        toast.error(ctx.error.message || ctx.error.statusText)
+        set({ error: ctx.error.message ||ctx.error.statusText })
       }
     })
     if (data) {
