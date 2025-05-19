@@ -46,8 +46,8 @@ const useAuthStore = create<AuthState>((set) => ({
     const { data, error } = await authClient.signIn.email(formData, {
       onError(ctx) {
         //handle error
-        toast.error(ctx.error.message)
-        set({ error: ctx.error.message })
+        toast.error(ctx.error.message || ctx.error.statusText)
+        set({ error: ctx.error.message ||ctx.error.statusText })
       }
     })
     console.log(error)
@@ -55,7 +55,7 @@ const useAuthStore = create<AuthState>((set) => ({
       set({ loading: false, error: null })
       return true;
     } else {
-      set({ loading: false })
+      set({ loading: false ,error: error.message || error.statusText  || "Failed to login"})
 
       return false
     }
