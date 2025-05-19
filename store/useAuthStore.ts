@@ -3,12 +3,13 @@ import axios from 'axios'
 import { AuthCredentials, LoginFormData, RegisterFormData } from '@/types/auth'
 import { authClient } from '@/lib/auth-client'
 import router from 'next/router'
+import { toast } from 'sonner'
 
 interface AuthState {
   loading: boolean
   error: string | null
-  registerUser: (formData: LoginFormData) => Promise<boolean>
-  loginUser: (formData: AuthCredentials) => Promise<string>
+  registerUser: (formData: RegisterFormData) => Promise<boolean>
+  loginUser: (formData: LoginFormData) => Promise<boolean>
   loginWithGoogle: () => Promise<string>
 }
 
@@ -20,33 +21,45 @@ const useAuthStore = create<AuthState>((set) => ({
 
   registerUser: async (formData) => {
     set({ loading: true, error: null })
-
-    try {
-      const response = await axios.post('/api/register', formData)
-      set({loading: false })
+    const { data, error } = await authClient.signUp.email({ email: formData.email, password: formData.password, name: formData.name }, {
+      onError(ctx) {
+        //handle error
+        toast.error(ctx.error.message)
+        set({ error: ctx.error.message })
+      }
+    })
+    if (data) {
+      set({ loading: false, error: null })
       return true;
-    } catch (error: any) {
-      set({
-        error: error?.response?.data?.message || 'Registration failed',
-        loading: false,
-      })
+    } else {
+      set({ loading: false, error: error?.message || 'Register failed' })
+
       return false
     }
+
+
   },
 
   loginUser: async (formData: AuthCredentials) => {
     set({ loading: true, error: null })
-    try {
-      const { data, error } = await authClient.signIn.email(formData)
-      set({loading:false})
-      return "success"
-    } catch (err: any) {
-      set({
-        error: err?.response?.data?.message || 'Login failed',
-        loading: false,
-      })
-      return "error";
+
+    const { data, error } = await authClient.signIn.email(formData, {
+      onError(ctx) {
+        //handle error
+        toast.error(ctx.error.message)
+        set({ error: ctx.error.message })
+      }
+    })
+    console.log(error)
+    if (data) {
+      set({ loading: false, error: null })
+      return true;
+    } else {
+      set({ loading: false })
+
+      return false
     }
+
   },
   loginWithGoogle: async () => {
     const { data, error } = await authClient.signIn.social({

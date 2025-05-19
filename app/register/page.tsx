@@ -43,8 +43,8 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    const loginResult = await registerUser(formData);
-    if (loginResult) {
+    const registerResult = await registerUser(formData);
+    if (registerResult) {
       // router.push('/login')
       toast.success("Registration successful", {
         description: `You can login with ${formData.email}`,
@@ -54,10 +54,7 @@ const RegisterForm = () => {
           onClick: () => router.push("/login"),
         },
       })
-    } else {
-      toast.error("Registration failed")
-
-    }
+    } 
 
   }
 
@@ -126,7 +123,6 @@ const RegisterForm = () => {
               {loading ? 'Registering...' : 'Register'}
             </Button>
           </motion.div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
         </motion.form>
         <motion.div variants={fadeUp}>
           <Button
