@@ -24,8 +24,8 @@ const useAuthStore = create<AuthState>((set) => ({
     const { data, error } = await authClient.signUp.email({ email: formData.email, password: formData.password, name: formData.name }, {
       onError(ctx) {
         //handle error
-        toast.error(ctx.error.message || ctx.error.statusText)
-        set({ error: ctx.error.message ||ctx.error.statusText })
+        toast.error(ctx.error.message || ctx.error.statusText ||  "Network error")
+        set({ error: ctx.error.message ||ctx.error.statusText ||  "Network error "})
       }
     })
     if (data) {
@@ -46,8 +46,8 @@ const useAuthStore = create<AuthState>((set) => ({
     const { data, error } = await authClient.signIn.email(formData, {
       onError(ctx) {
         //handle error
-        toast.error(ctx.error.message || ctx.error.statusText)
-        set({ error: ctx.error.message ||ctx.error.statusText })
+        toast.error(ctx.error.message || ctx.error.statusText ||  "Network error")
+        set({ error: ctx.error.message ||ctx.error.statusText ||  "Network error "})
       }
     })
     console.log(error)
