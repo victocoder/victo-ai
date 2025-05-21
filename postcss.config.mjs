@@ -2,6 +2,7 @@ const config = {
   plugins: ["@tailwindcss/postcss"],
   theme: {
     extend: {
+      
       animation: {
         "spin-slow": "spin 3s linear infinite",
         brain: "glow 2s ease-in-out infinite",

@@ -8,36 +8,41 @@ import 'github-markdown-css/github-markdown.css';
 import AiChat from "@/components/custom/AiChat";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-  import { motion } from "framer-motion";
+import { motion } from "framer-motion";
+import LandingNav from "@/components/custom/LandingNav";
+import Services from "@/components/custom/Services";
 export default function Home() {
   const router = useRouter()
 
 
-const container = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.3,
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+      },
     },
-  },
-};
+  };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
   return (
-<motion.div
-      className="flex flex-col justify-center items-center h-screen gap-4 p-4"
+  <div>
+    <LandingNav />
+      <motion.div
+      className="flex flex-col justify-center items-center  gap-4 p-4"
       variants={container}
       initial="hidden"
       animate="visible"
     >
-      <motion.div
+    <div className="flex  flex-col-reverse pt-16 py-8 md:flex-row justify-center items-center gap-4">
+        <motion.div
         className="max-w-[600px] flex justify-center items-center flex-col gap-4"
         variants={container}
       >
-        <motion.div variants={fadeUp}>
+        <motion.div variants={fadeUp} className="hidden md:block">
           <Image src="/logo.png" alt="img" width={310} height={310} />
         </motion.div>
 
@@ -51,9 +56,7 @@ const fadeUp = {
         <motion.p className="text-center" variants={fadeUp}>
           Various AI experts are available to assist you in every aspect of your life.
         </motion.p>
-      </motion.div>
-
-      <motion.div variants={fadeUp}>
+              <motion.div variants={fadeUp}>
         <Button
           size="lg"
           className="text-white cursor-pointer"
@@ -62,7 +65,18 @@ const fadeUp = {
           Get Started
         </Button>
       </motion.div>
+      </motion.div>
+
+
+       
+      <motion.div      variants={fadeUp}>
+               <Image src="/image/doctor2-img.png" alt="img" width={510} height={510} />
+      </motion.div>
+    </div>
     </motion.div>
+    <Services />
+
+  </div>
 
   );
 }

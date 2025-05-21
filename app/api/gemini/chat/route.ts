@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     });
 
     const response = await chat.sendMessage({ message });
-
+  
     const newModelReply = {
         role: "model",
         parts: [{ text: response.text }],

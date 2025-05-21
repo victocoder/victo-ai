@@ -48,7 +48,6 @@ const LoginForm = () => {
     const loginResult = await loginUser(formData);
     if (loginResult) {
       router.push('/dashboard')
-     
     } 
 
   }
